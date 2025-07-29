@@ -7,7 +7,7 @@ function NewProject() {
       <h1>Criar Projeto</h1>
       <p>Crie seu projeto para depois adicionar o serviço</p>
       
-      <ProjectForm/>
+      <ProjectForm bntText = "Criar Projeto"/>
     </div>
   );
 }
