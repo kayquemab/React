@@ -5,8 +5,9 @@ import Select from '../form/Select'
 import SubmitButton from '../form/SubmitButton'
 import styles from './ProjectForm.module.css'
 
-function ProjectForm({ bntText }) {
+function ProjectForm({ handleSubmit, bntText, projectData }) {
     const [categories, setCategories] = useState([])
+    const [projects, setProjects] = useState(projectData || {})
 
     useEffect(() => {
         fetch("http://localhost:5000/caregories", {
@@ -22,15 +23,37 @@ function ProjectForm({ bntText }) {
             .catch((err) => console.log(err))
     }, [])
 
+    const submit = (e) => {
+        e.preventDefault()
+        handleSubmit(projects)
+        
+    }
+
+    function handleChange(e) {
+        setProjects({ ...projects, [e.target.name]: e.target.value })
+    }
+
+    function handleCategory(e){
+        setProjects({
+            ...projects, category: {
+                id: e.target.value,
+                name: e.target.options[e.target.selectedIndex].text
+
+            },
+        })
+    }
+
     return (
 
-        <form className={styles.form}>
+        <form onSubmit={submit} className={styles.form}>
 
             <Input
                 type='text'
                 text='Nome do Projeto'
                 name='name'
                 placeholder='Insira o nome do projeto: '
+                handleOnChange={handleChange}
+                value={projects.name ? projects.name : ''}
             />
 
             <Input
@@ -38,12 +61,16 @@ function ProjectForm({ bntText }) {
                 text='Orçamento do Projeto'
                 name='budget'
                 placeholder='Insira o orçamento total: '
+                handleOnChange={handleChange}
+                value={projects.budget ? projects.budget : ''}
             />
 
             <Select
                 name="category_id"
                 text="Selecione a Categoria"
                 options={categories}
+                handleOnChange={handleCategory}
+                value={projects.category ? projects.category.id : ''}
             />
 
             <SubmitButton text={bntText} />
