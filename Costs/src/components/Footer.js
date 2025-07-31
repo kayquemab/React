@@ -9,20 +9,33 @@ function Footer() {
 
                 {/* Facebook */}
                 <li>
-                    <FaFacebook />
+                    <FaFacebook
+                        as="a"
+                        onClick={() => window.open('https://www.facebook.com', '_blank')}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </li>
 
                 {/* Instagram */}
                 <li>
-                    <FaInstagram />
+                    <FaInstagram
+                        as="a"
+                        onClick={() => window.open('https://www.instagram.com', '_blank')}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </li>
 
-                {/* LinkedIn */}
+                {/* LInkedin */}
                 <li>
-                    <FaLinkedin />
+                    <FaLinkedin
+                        as="a"
+                        onClick={() => window.open('https://www.linkedin.com', '_blank')}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </li>
 
             </ul>
+            
             <p className={styles.copy_right}>
                 <span >
                     Costs
