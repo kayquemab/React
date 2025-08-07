@@ -12,6 +12,7 @@ import Loading from '../layout/Loading'
 function Projects() {
     const [projects, setProjects] = useState([])
     const [removeLoading, setRemoveLoading] = useState(false)
+    const [ProjectsMenssage, setProjectsMenssage] = useState('')
 
     const location = useLocation()
     let menssage = ''
@@ -22,18 +23,37 @@ function Projects() {
     useEffect(() => {
         setTimeout(() => {
             fetch('http://localhost:5000/Projects', {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-            },
-        }).then(resp => resp.json())
-            .then(data => {
-                setProjects(data)
-                setRemoveLoading(true)
-            })
-            .catch(err => console.log(err))
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                },
+            }).then(resp => resp.json())
+                .then(data => {
+                    setProjects(data)
+                    setRemoveLoading(true)
+                })
+                .catch(err => console.log(err))
         }, 300)
     }, [])
+
+    function removeProject(id) {
+        fetch(`http://localhost:5000/Projects/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(resp => resp.json())
+            .then(data => {
+                setProjects(projects.filter((projects) => projects.id !== id))
+
+                // Mensagem de "Excluir"
+
+                setProjectsMenssage("Projeto Removido com Sucesso!")
+
+
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className={Styles.project_container}>
@@ -42,6 +62,7 @@ function Projects() {
                 <LinkButton to="/newproject" text="Criar Projeto" />
             </div>
             {menssage && <Menssage type="success" msg={menssage} />}
+            {ProjectsMenssage && <Menssage type="success" msg={ProjectsMenssage} />}
             <Container customClass="start">
                 {projects.length > 0 &&
                     projects.map((project) => (
@@ -51,12 +72,13 @@ function Projects() {
                             budget={project.budget}
                             category={project.category?.name || "Sem categoria"}
                             key={project.id}
+                            handleRemove={removeProject}
                         />
                     ))}
-                    {!removeLoading && <Loading/>}
-                    {removeLoading && projects.length === 0 && (
-                        <p>Não há projetos cadastrados!</p>
-                    )}
+                {!removeLoading && <Loading />}
+                {removeLoading && projects.length === 0 && (
+                    <p>Não há projetos cadastrados!</p>
+                )}
             </Container>
         </div>
     )
