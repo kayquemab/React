@@ -9,6 +9,7 @@ import Container from './components/layout/Container';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer'
 import Projects from './components/pages/Projects';
+import Project from './components/pages/Project';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
 
           {/* New Project */}
           <Route path="/NewProject" element={<NewProject />} />
+
+          {/* New Project */}
+          <Route path="/Project/:id" element={<Project />} />
 
         </Routes>
       </Container>
