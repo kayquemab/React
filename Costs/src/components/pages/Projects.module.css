@@ -1,11 +1,12 @@
-.project_container {
-    padding: 2em;
-
+.title_container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 100%;
+  padding: 0.5em 2em;
+  padding-top: 1em;
+  height: 20px;
 }
 
-.title_container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2em;
-    
+.project_container {
+    padding: 2em;
 }

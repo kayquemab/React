@@ -1,15 +1,17 @@
 .navbar {
-    display: flex;
+    
     justify-content: space-between;
     background-color: #222;
     padding: 1em;
 }
 
 .list {
-    display: flex;
-    list-style: none;
-    align-items: center;
-
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: flex-end; /* tela cheia: itens à direita */
+  padding: 0;
+  margin: 0;
 }
 
 .item {

@@ -16,7 +16,7 @@ function Menssage({ type, msg }) {
 
         const timer = setTimeout(() => {
             setVisible(false)
-        }, 3000)
+        }, 3000000000000000)
 
         return () => clearTimeout(timer)
 

@@ -1,5 +1,4 @@
 .Container {
-    width: 1200px;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -7,7 +6,7 @@
 }
 
 .min-height {
-    min-height: 75%;
+    min-height: 80%;
 }
 
 .start {

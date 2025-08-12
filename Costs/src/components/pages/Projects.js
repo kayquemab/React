@@ -56,31 +56,42 @@ function Projects() {
     }
 
     return (
-        <div className={Styles.project_container}>
+
+        <>
+
             <div className={Styles.title_container}>
                 <h1>Meus Projetos</h1>
                 <LinkButton to="/newproject" text="Criar Projeto" />
             </div>
-            {menssage && <Menssage type="success" msg={menssage} />}
-            {ProjectsMenssage && <Menssage type="success" msg={ProjectsMenssage} />}
-            <Container customClass="start">
-                {projects.length > 0 &&
-                    projects.map((project) => (
-                        <ProjectCard
-                            id={project.id}
-                            name={project.name}
-                            budget={project.budget}
-                            category={project.category?.name || "Sem categoria"}
-                            key={project.id}
-                            handleRemove={removeProject}
-                        />
-                    ))}
-                {!removeLoading && <Loading />}
-                {removeLoading && projects.length === 0 && (
-                    <p>Não há projetos cadastrados!</p>
-                )}
-            </Container>
-        </div>
+
+            <div className={Styles.project_container}>
+
+
+                {menssage && <Menssage type="success" msg={menssage} />}
+                {ProjectsMenssage && <Menssage type="success" msg={ProjectsMenssage} />}
+
+                <Container customClass="start">
+                    {projects.length > 0 &&
+                        projects.map((project) => (
+                            <ProjectCard
+                                id={project.id}
+                                name={project.name}
+                                budget={project.budget}
+                                category={project.category?.name || "Sem categoria"}
+                                key={project.id}
+                                handleRemove={removeProject}
+                            />
+                        ))}
+                    {!removeLoading && <Loading />}
+                    {removeLoading && projects.length === 0 && (
+                        <p>Não há projetos cadastrados!</p>
+                    )}
+                </Container>
+
+            </div>
+
+        </>
+
     )
 }
 

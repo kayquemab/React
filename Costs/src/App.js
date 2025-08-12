@@ -41,7 +41,7 @@ function App() {
         </Routes>
       </Container>
 
-      <Footer/>
+      <Footer/> 
       
     </Router>
   );
