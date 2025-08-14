@@ -1,8 +1,9 @@
-.Container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    flex-wrap: wrap;
+.container {
+  width: 100%;
+  max-width: none;     /* libera toda a largura */
+  margin: 0;           /* se quiser centralizar com limite, use margin: 0 auto; e um max-width */
+  padding: 0 24px;     /* opcional, só para respiro lateral */
+  display: block;      /* evita qualquer influência de flex aqui */
 }
 
 .min-height {
@@ -18,4 +19,3 @@
     flex-direction: column;
     justify-content: flex-start;
 }
-

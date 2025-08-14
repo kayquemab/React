@@ -2,3 +2,10 @@
     width: 100%;
     margin: 2em 0;
 }
+
+.projects_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;           /* espaço entre cards */
+  align-items: stretch;
+}

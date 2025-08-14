@@ -1,29 +1,34 @@
+/* Barra ocupa 100% */
 .navbar {
-    
-    justify-content: space-between;
-    background-color: #222;
-    padding: 1em;
+  width: 100%;
+  height: 100px;
+  background: #222;
 }
 
+/* Conteúdo interno centralizado e limitado (sem mexer no JSX) */
+.navbar > * {
+  max-width: 1200px;    /* ajuste se seu site usa outro limite */
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo à esquerda / menu à direita */
+}
+
+/* Menu */
 .list {
   display: flex;
   list-style: none;
-  align-items: center;
-  justify-content: flex-end; /* tela cheia: itens à direita */
-  padding: 0;
+  gap: 16px;
   margin: 0;
-}
-
-.item {
-    margin-right: 1em;
-
+  padding: 0;
 }
 
 .item a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
-
-.item a:hover {
-    color: #ffbb33;
-}
+.item a:hover { color: #ffbb33; }

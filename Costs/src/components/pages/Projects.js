@@ -71,17 +71,22 @@ function Projects() {
                 {ProjectsMenssage && <Menssage type="success" msg={ProjectsMenssage} />}
 
                 <Container customClass="start">
-                    {projects.length > 0 &&
-                        projects.map((project) => (
-                            <ProjectCard
-                                id={project.id}
-                                name={project.name}
-                                budget={project.budget}
-                                category={project.category?.name || "Sem categoria"}
-                                key={project.id}
-                                handleRemove={removeProject}
-                            />
-                        ))}
+                    <div className={Styles.projects_grid}>
+                        {projects.length > 0 &&
+                            projects.map((project) => (
+                                <div key={project.id} className={Styles.project_item}>
+                                    <ProjectCard
+                                        id={project.id}
+                                        name={project.name}
+                                        budget={project.budget}
+                                        category={project.category?.name || "Sem categoria"}
+                                        key={project.id}
+                                        handleRemove={removeProject}
+                                    />
+                                </div >
+                            ))}
+
+                    </div>
                     {!removeLoading && <Loading />}
                     {removeLoading && projects.length === 0 && (
                         <p>Não há projetos cadastrados!</p>
