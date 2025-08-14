@@ -1,5 +1,11 @@
 {
-  "Projects": [],
+  "Projects": [
+    {
+      "id": "7f29",
+      "cost": 0,
+      "services": []
+    }
+  ],
   "caregories": [
     {
       "id": "1",
