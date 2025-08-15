@@ -1,54 +1,9 @@
 {
   "Projects": [
     {
-      "id": "2e54",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "8d2e",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "a45c",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "7462",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "6bd3",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "a9d7",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "6e99",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "399f",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "4ee3",
-      "cost": 0,
-      "services": []
-    },
-    {
-      "id": "2715",
+      "id": "7da1",
       "name": "teste",
-      "budget": "100",
+      "budget": "1000",
       "category": {
         "id": "1",
         "name": "Infra"

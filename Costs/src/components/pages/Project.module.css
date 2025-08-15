@@ -19,21 +19,6 @@
     font-weight: bold;
 }
 
-.details_container,
-.service_form_container {
-    border-bottom: 1px solid #7a7a7a;
-    margin-bottom: 1.2em;
-    padding-bottom: 1.2em;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    /* Linha ocupando 100% da tela */
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    box-sizing: border-box;
-}
-
 .btn {
     background-color: #222;
     color: #fff;
@@ -57,7 +42,7 @@
 /* ---------- RESPONSIVIDADE ---------- */
 
 /* Telas até 768px (tablet e celular) */
-@media (max-width: 768px) {
+@media (max-width: 768px) {q
     .details_container {
         flex-direction: column; /* muda para coluna no mobile */
         align-items: flex-start;
@@ -92,3 +77,23 @@
   gap: 16px;           /* espaço entre cards */
   align-items: stretch;
 }
+
+.details_container,
+.service_form_container {
+  border-bottom: 1px solid #7a7a7a;
+  margin-bottom: 1.2em;
+  padding-bottom: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1em;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+
+
+
+
+
