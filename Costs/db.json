@@ -1,5 +1,17 @@
 {
-  "Projects": [],
+  "Projects": [
+    {
+      "id": "fe2e",
+      "name": "teste",
+      "budget": "500",
+      "category": {
+        "id": "1",
+        "name": "Infra"
+      },
+      "cost": 0,
+      "services": []
+    }
+  ],
   "caregories": [
     {
       "id": "1",

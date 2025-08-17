@@ -10,6 +10,7 @@ function Project() {
   const { id } = useParams();
   const [project, setProject] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showServiveForm, setShowServiceForm] = useState(false);
   const [messageInfo, setMessageInfo] = useState(null); // estado único para msg
 
   useEffect(() => {
@@ -26,6 +27,10 @@ function Project() {
 
   function toggleProjectForm() {
     setShowProjectForm(!showProjectForm);
+  }
+
+  function toggleServiceForm() {
+    setShowServiceForm(!showServiveForm);
   }
 
   function editPost(updatedProject) {
@@ -92,6 +97,33 @@ function Project() {
                 </div>
               )}
             </div>
+
+
+
+            <div className={Styles.service_form_container}>
+              <h2>Adicione um serviço:</h2>
+
+              <button className={Styles.btn} onClick={toggleServiceForm}>
+                {showServiveForm ? 'Fechar' : 'Adicionar Serviço'}
+              </button>
+
+              <div className={Styles.projects_info}>
+                {showServiveForm && (
+                  <div>Formulário</div>
+                )}
+              </div>
+
+            </div>
+
+
+            <h2>Serviços</h2>
+            <Container custonClass="start">
+
+              <p>Itens de serviço: </p>
+
+            </Container>
+
+
           </Container>
         </div>
       ) : (
