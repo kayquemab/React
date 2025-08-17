@@ -1,0 +1,47 @@
+.sobre_container {
+  width: 100%;
+  padding: 2em;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+.sobre_container h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.sobre_container h1 span {
+  background-color: #222;
+  color: #ffbb33;
+  padding: 0.1em 0.3em;
+  border-radius: 5px;
+}
+
+.sobre_container p {
+  max-width: 700px;
+  margin: 0.5em auto;
+  font-size: 1.1em;
+  color: #444;
+  line-height: 1.6em;
+}
+
+.categorias {
+  margin-top: 2em;
+}
+
+.categorias h2 {
+  margin-bottom: 1em;
+  font-size: 1.5em;
+  color: #222;
+}
+
+.categorias ul {
+  list-style: none;
+  padding: 0;
+}
+
+.categorias li {
+  font-size: 1.1em;
+  margin: 0.5em 0;
+  color: #333;
+}

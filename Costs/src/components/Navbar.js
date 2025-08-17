@@ -25,15 +25,15 @@ function Navbar() {
                     <li className={styles.item}>
                         <Link to="/">Home</Link>
                     </li>
-                    
-                    {/* Sobre */}
-                    <li className={styles.item}>
-                        <Link to="/Company">Sobre</Link>
-                    </li>
 
                     {/* Meus Projetos */}
                     <li className={styles.item}>
                         <Link to="/Projects">Meus Projetos</Link>
+                    </li>
+
+                    {/* Sobre */}
+                    <li className={styles.item}>
+                        <Link to="/Company">Sobre</Link>
                     </li>
 
                     {/* Contato */}
@@ -41,11 +41,11 @@ function Navbar() {
                         <Link to="/Contact">Contato</Link>
                     </li>
 
-                    
+
                 </ul>
 
             </Container>
-            
+
         </nav>
     )
 }
