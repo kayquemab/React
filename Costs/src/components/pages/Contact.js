@@ -15,7 +15,7 @@ function Contato() {
               type="text" 
               id="nome" 
               name="nome" 
-              placeholder="Digite seu nome" 
+              placeholder="Digite seu nome:" 
             />
           </div>
 
@@ -25,7 +25,7 @@ function Contato() {
               type="email" 
               id="email" 
               name="email" 
-              placeholder="Digite seu e-mail" 
+              placeholder="Digite seu e-mail:" 
             />
           </div>
 
@@ -34,7 +34,7 @@ function Contato() {
             <textarea 
               id="mensagem" 
               name="mensagem" 
-              placeholder="Digite sua mensagem"
+              placeholder="Digite sua mensagem:"
             ></textarea>
           </div>
 

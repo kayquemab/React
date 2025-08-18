@@ -1,8 +1,7 @@
 .contato_container {
-  width: 100%;
-  padding: 2em;
-  text-align: center;
-  background-color: #f2f2f2;
+    width: 450px;
+    margin: 0 auto;
+    padding: 3em;
 }
 
 .contato_container h1 {
@@ -34,8 +33,8 @@
 
 .form_group input,
 .form_group textarea {
-  padding: 0.7em;
-  border-radius: 5px;
+  padding: 1.5em;
+  border-radius: 10px;
   border: none;
   outline: none;
 }
@@ -50,7 +49,7 @@ textarea {
   color: #fff;
   padding: 0.7em 1.2em;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
 }
