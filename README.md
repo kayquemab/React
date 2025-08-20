@@ -21,7 +21,7 @@ Este é um projeto de site desenvolvido durante as aulas do Hora de Codar, com f
 ### 🚀 Como Usar
 
 1. Clone o repositório <br>
-link: (https://github.com/kayquemab/React.git)
+link: (https://github.com/kayquemab/React_1.git)
 2. Acesse a documentação do projeto para melhor experiência da navegação
 3. Explore as páginas do site e revise o código-fonte para fins de aprendizado
 
