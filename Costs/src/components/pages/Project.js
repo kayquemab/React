@@ -12,13 +12,11 @@ import ServiceCard from '../service/ServiceCard';
 
 function Project() {
   const { id } = useParams();
-  const [project, setProject] = useState([]);
+  const [project, setProject] = useState({});
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiveForm, setShowServiceForm] = useState(false);
   const [messageInfo, setMessageInfo] = useState(null); // estado único para msg
   const [services, setServices] = useState([])
-
-
 
   useEffect(() => {
     // Para ver o loading
@@ -33,7 +31,7 @@ function Project() {
           .then((resp) => resp.json())
           .then((data) => {
             setProject(data)
-            setServices(data.services)
+            setServices(data.services || [])
           }),
       0,
     )
@@ -68,7 +66,6 @@ function Project() {
       .catch(err => console.log(err));
   }
 
-
   function toggleProjectForm() {
     setShowProjectForm(!showProjectForm);
   }
@@ -78,48 +75,33 @@ function Project() {
   }
 
   function createService(project) {
-    // Clona a lista para evitar mutações inesperadas
     const list = Array.isArray(project.services) ? [...project.services] : [];
     const lastService = list[list.length - 1];
 
-    // Segurança: se não houver serviço, aborta
     if (!lastService) {
-      setMessageInfo({
-        text: "Adicione um serviço válido antes de salvar.",
-        type: "error",
-        id: Date.now(),
-      });
+      setMessageInfo({ text: "Adicione um serviço válido antes de salvar.", type: "error", id: Date.now() });
       return false;
     }
 
-    // Gera id (se ainda não tiver) e normaliza custo
-    const cost = Number(lastService.cost) || 0;
-    const serviceWithId = { ...lastService, id: lastService.id || uuidv4(), cost };
+    // Helpers: trabalha em centavos p/ evitar 149.9999
+    const cents = (n) => Math.round((Number(n) || 0) * 100);
 
-    const currentCost = Number(project.cost) || 0;
-    const budget = Number(project.budget) || 0;
-    const newCost = currentCost + cost;
+    const lastCostC = cents(lastService.cost);
+    const currentCostC = cents(project.cost);
+    const budgetC = cents(project.budget);
 
-    // Validação de orçamento
-    if (newCost > budget) {
-      setMessageInfo({
-        text: "Orçamento ultrapassado, verifique o valor do serviço!",
-        type: "error",
-        id: Date.now(),
-      });
-      // desfaz o push feito pelo form
+    // garante id e mantém cost coerente (2 casas)
+    const serviceWithId = { ...lastService, id: lastService.id || uuidv4(), cost: lastCostC / 100 };
+    const newCostC = currentCostC + lastCostC;
+
+    if (newCostC > budgetC) {
+      setMessageInfo({ text: "Orçamento ultrapassado, verifique o valor do serviço!", type: "error", id: Date.now() });
       list.pop();
       return false;
     }
 
-    // Confirma a inclusão do último serviço com id
     const updatedServices = [...list.slice(0, -1), serviceWithId];
-
-    const updatedProject = {
-      ...project,
-      services: updatedServices,
-      cost: newCost,
-    };
+    const updatedProject = { ...project, services: updatedServices, cost: newCostC / 100 };
 
     return fetch(`http://localhost:5000/Projects/${project.id}`, {
       method: "PATCH",
@@ -129,12 +111,8 @@ function Project() {
       .then((resp) => resp.json())
       .then((data) => {
         setProject(data);
-        setServices(data.services || []); // 🔹 atualiza a lista imediatamente
-        setMessageInfo({
-          text: "Serviço adicionado com sucesso!",
-          type: "success",
-          id: Date.now(),
-        });
+        setServices(data.services || []);
+        setMessageInfo({ text: "Serviço adicionado com sucesso!", type: "success", id: Date.now() });
         setShowServiceForm(false);
       })
       .catch((err) => console.log(err));
@@ -144,7 +122,6 @@ function Project() {
   function removeService() {
 
   }
-
 
   return (
     <>
@@ -177,7 +154,7 @@ function Project() {
                 </div>
               ) : (
                 <div className={Styles.projects_info}>
-                  <p><span>Categoria: </span> {project.category.name}</p>
+                  <p><span>Categoria: </span> {project.category?.name ?? 'Sem categoria'}</p>
                   <p><span>Total do orçamento: </span> R${project.budget}</p>
                   <p><span>Total utilizado: </span> R${project.cost}</p>
                 </div>

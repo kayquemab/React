@@ -53,7 +53,6 @@ function ProjectForm({ handleSubmit, bntText, projectData }) {
                 name='name'
                 placeholder='Insira o nome do projeto: '
                 handleOnChange={handleChange}
-                value={projects.name ? projects.name : ''}
             />
 
             <Input
@@ -62,29 +61,14 @@ function ProjectForm({ handleSubmit, bntText, projectData }) {
                 name="budget"
                 placeholder="Insira o orçamento total"
                 handleOnChange={handleChange}
-                value={projects.budget ? projects.budget : ""}
-                inputMode="numeric"
-                step="1"
                 min="0"
-                style={{
-                    MozAppearance: "textfield",
-                    appearance: "textfield"
-                }}
-                onWheel={(e) => e.target.blur()}
-                onKeyDown={(e) =>
-                    (e.key === "ArrowUp" || e.key === "ArrowDown") && e.preventDefault()
-                }
             />
-
-
-
 
             <Select
                 name="category_id"
                 text="Selecione a Categoria"
                 options={categories}
                 handleOnChange={handleCategory}
-                value={projects.category ? projects.category.id : ''}
             />
 
             <SubmitButton text={bntText} />
