@@ -1,17 +1,5 @@
 {
-  "Projects": [
-    {
-      "id": "e8df",
-      "name": "teste",
-      "budget": "1000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": []
-    }
-  ],
+  "Projects": [],
   "caregories": [
     {
       "id": "1",
