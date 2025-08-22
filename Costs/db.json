@@ -1,20 +1,20 @@
 {
   "Projects": [
     {
-      "id": "cd58",
+      "id": "9772",
       "name": "teste",
-      "budget": "1500",
+      "budget": "1000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 1000,
+      "cost": 100,
       "services": [
         {
           "name": "teste",
-          "cost": "1000",
+          "cost": 100,
           "description": "teste",
-          "id": "ba781c3f-1c09-4bce-a3da-2bff099dd2e7"
+          "id": "3cd3f21d-4f6f-4c25-96d8-95b9cf189124"
         }
       ]
     }

@@ -7,14 +7,14 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
 
   // fallback simples
   const cat = (category || 'Indefinida').toLowerCase()
-  const budgetText = `R$ ${Number(budget || 0).toFixed(2)}`
+  // const budgetText = `R$ ${Number(budget).toFixed(2)}`
 
   return (
     <div className={Styles.project_card}>
       <h4>{name}</h4>
 
       <p>
-        <span>Orçamento: </span> {budgetText}
+        <span>Orçamento: </span> R$ {budget}
       </p>
 
       <p className={Styles.category_text}>

@@ -26,14 +26,14 @@ function ProjectForm({ handleSubmit, bntText, projectData }) {
     const submit = (e) => {
         e.preventDefault()
         handleSubmit(projects)
-        
+
     }
 
     function handleChange(e) {
         setProjects({ ...projects, [e.target.name]: e.target.value })
     }
 
-    function handleCategory(e){
+    function handleCategory(e) {
         setProjects({
             ...projects, category: {
                 id: e.target.value,
@@ -57,13 +57,27 @@ function ProjectForm({ handleSubmit, bntText, projectData }) {
             />
 
             <Input
-                type='number'
-                text='Orçamento do Projeto'
-                name='budget'
-                placeholder='Insira o orçamento total: '
+                type="number"
+                text="Orçamento do Projeto"
+                name="budget"
+                placeholder="Insira o orçamento total"
                 handleOnChange={handleChange}
-                value={projects.budget ? projects.budget : ''}
+                value={projects.budget ? projects.budget : ""}
+                inputMode="numeric"
+                step="1"
+                min="0"
+                style={{
+                    MozAppearance: "textfield",
+                    appearance: "textfield"
+                }}
+                onWheel={(e) => e.target.blur()}
+                onKeyDown={(e) =>
+                    (e.key === "ArrowUp" || e.key === "ArrowDown") && e.preventDefault()
+                }
             />
+
+
+
 
             <Select
                 name="category_id"

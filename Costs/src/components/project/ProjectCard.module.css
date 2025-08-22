@@ -2,20 +2,26 @@
 .project_card {
   box-sizing: border-box;
   padding: 1em;
-  border: 1px solid #7a7a7a;
-  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
-  transition: box-shadow .2s ease;
+  
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   min-height: 220px;
+  cursor: pointer;
+
+  /* 🔥 transições iguais às do outro card */
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 
 .project_card:hover {
+  transform: translateY(-2px); /* levanta o card */
   box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+  border-color: #cbd5e1;
 }
 
 /* Título */
