@@ -119,9 +119,54 @@ function Project() {
   }
 
 
-  function removeService() {
+  function removeService(serviceId, serviceCost) {
+    // helpers: trabalha em centavos
+    const cents = (n) => Math.round((Number(n) || 0) * 100);
 
+    const updatedServices = (project.services || []).filter(
+      (s) => s.id !== serviceId
+    );
+
+    const newCostC = Math.max(0, cents(project.cost) - cents(serviceCost));
+
+    const updatedProject = {
+      ...project,
+      services: updatedServices,
+      cost: newCostC / 100, // volta para reais
+    };
+
+    fetch(`http://localhost:5000/Projects/${project.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedProject),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Erro ao atualizar projeto");
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setProject(data);
+        setServices(data.services || []);
+        setMessageInfo({
+          text: "Serviço removido com sucesso!",
+          type: "success",
+          id: Date.now(),
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        setMessageInfo({
+          text: "Erro ao remover serviço",
+          type: "error",
+          id: Date.now(),
+        });
+      });
   }
+
+
+
 
   return (
     <>
@@ -139,7 +184,7 @@ function Project() {
             )}
 
             <div className={Styles.details_container}>
-              <h1>Projeto: {project.name}</h1>
+              <h1>Projeto {project.name}</h1>
               <button className={Styles.btn} onClick={toggleProjectForm}>
                 {showProjectForm ? 'Fechar' : 'Editar Projeto'}
               </button>
