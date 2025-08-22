@@ -5,6 +5,9 @@ import Loading from '../layout/Loading';
 import Container from '../layout/Container';
 import ProjectForm from '../project/ProjectForm';
 import Menssage from '../layout/Menssage';
+import ServiceForm from '../service/ServiceForm';
+
+import { v4 as uuidv4 } from 'uuid'
 
 function Project() {
   const { id } = useParams();
@@ -12,6 +15,8 @@ function Project() {
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiveForm, setShowServiceForm] = useState(false);
   const [messageInfo, setMessageInfo] = useState(null); // estado único para msg
+
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,14 +29,6 @@ function Project() {
         .catch(err => console.log(err));
     }, 500);
   }, [id]);
-
-  function toggleProjectForm() {
-    setShowProjectForm(!showProjectForm);
-  }
-
-  function toggleServiceForm() {
-    setShowServiceForm(!showServiveForm);
-  }
 
   function editPost(updatedProject) {
     if (updatedProject.budget < updatedProject.cost) {
@@ -62,11 +59,62 @@ function Project() {
       .catch(err => console.log(err));
   }
 
+
+  function toggleProjectForm() {
+    setShowProjectForm(!showProjectForm);
+  }
+
+  function toggleServiceForm() {
+    setShowServiceForm(!showServiveForm);
+  }
+
+  function createService(project) {
+    const lastService = project.services[project.services.length - 1]
+    lastService.id = uuidv4()
+
+    const lastServiceCost = lastService.cost
+    const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+    if (newCost > parseFloat(project.budget)) {
+      // Exibir mensagem de erro
+      setMessageInfo({
+        text: "Orçamento ultrapassado, verifique o valor do serviço!",
+        type: "error",
+        id: Date.now(),
+      })
+
+      project.services.pop() // remove o último que estourou
+      return false
+    }
+
+    project.cost = newCost
+
+    fetch(`http://localhost:5000/Projects/${project.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(project),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data)
+        setProject(data)
+        setMessageInfo({
+          text: "Serviço adicionado com sucesso!",
+          type: "success",
+          id: Date.now(),
+        })
+      })
+      .catch((err) => console.log(err))
+  }
+
+
   return (
     <>
       {project.name ? (
         <div className={Styles.project_details}>
+
           <Container custonClass="column">
+
             {messageInfo && (
               <Menssage
                 key={messageInfo.id}
@@ -98,8 +146,6 @@ function Project() {
               )}
             </div>
 
-
-
             <div className={Styles.service_form_container}>
               <h2>Adicione um serviço:</h2>
 
@@ -109,7 +155,11 @@ function Project() {
 
               <div className={Styles.projects_info}>
                 {showServiveForm && (
-                  <div>Formulário</div>
+                  <ServiceForm
+                    handleSubmit={createService}
+                    projectData={project}
+                    btnText="Adicionar Serviço"
+                  />
                 )}
               </div>
 
@@ -117,6 +167,7 @@ function Project() {
 
 
             <h2>Serviços</h2>
+            
             <Container custonClass="start">
 
               <p>Itens de serviço: </p>
@@ -125,6 +176,7 @@ function Project() {
 
 
           </Container>
+
         </div>
       ) : (
         <Loading />
